@@ -11,8 +11,7 @@ uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
 if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
 
-    data['Date'] = pd.to_datetime(data['Date'])
-
+    data['Date'] = pd.to_datetime(data['Date'], format='%Y%m%d')
     
     # Convert Distance to numeric if needed
     if data['Distance'].dtype == 'O':  # If Distance is an object (string)
@@ -27,6 +26,7 @@ if uploaded_file is not None:
 
         # Handicap Over Time with Distance as point size
         fig1 = px.scatter(filtered_data, x='Date', y='Handicap', size='Distance', color='Name', title='Handicap Over Time')
+        fig1.update_xaxes(tickformat="%Y-%m-%d")
         st.plotly_chart(fig1)
 
         # Race Time Over Time with Distance as point size
