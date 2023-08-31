@@ -2,6 +2,17 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+
+def time_to_seconds(time_str):
+    h, m, s = map(int, time_str.split(':'))
+    return h*3600 + m*60 + s
+
+def seconds_to_time(seconds):
+    m, s = divmod(seconds, 60)
+    h, m = divmod(m, 60)
+    return f"{h:02}:{m:02}:{s:02}"
+
+
 # Title
 st.title("Swimming Analysis Dashboard")
 
@@ -12,10 +23,11 @@ if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
 
     data['Date'] = pd.to_datetime(data['Date'], format='%Y%m%d')
-    data.columns
-    data['Handicap'] = pd.to_timedelta(data['Handicap'])
-    data['Pace/100m'] = pd.to_timedelta(data['Pace/100m'])
-    data['Swim Time'] = pd.to_timedelta(data['Swim Time'])
+    
+    # Convert time columns to total seconds
+    data['Handicap_seconds'] = data['Handicap'].apply(time_to_seconds)
+    data['Race Time_seconds'] = data['Race Time'].apply(time_to_seconds)
+    data['Swim Time_seconds'] = data['Swim Time'].apply(time_to_seconds)
 
 
 
