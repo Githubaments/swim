@@ -10,6 +10,9 @@ uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
 
 if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
+
+    data['Date'] = pd.to_datetime(data['Date'])
+
     
     # Convert Distance to numeric if needed
     if data['Distance'].dtype == 'O':  # If Distance is an object (string)
