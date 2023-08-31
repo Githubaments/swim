@@ -12,6 +12,7 @@ if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
 
     data['Date'] = pd.to_datetime(data['Date'], format='%Y%m%d')
+    data.columns
     data['Handicap'] = pd.to_timedelta(data['Handicap'])
     data['Race Time'] = pd.to_timedelta(data['Race Time'])
     data['Swim Time'] = pd.to_timedelta(data['Swim Time'])
