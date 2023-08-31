@@ -26,7 +26,6 @@ if uploaded_file is not None:
 
         # Handicap Over Time with Distance as point size
         fig1 = px.scatter(filtered_data, x='Date', y='Handicap', size='Distance', color='Name', title='Handicap Over Time')
-        fig1.update_xaxes(tickformat="%Y-%m-%d")
         st.plotly_chart(fig1)
 
         # Race Time Over Time with Distance as point size
