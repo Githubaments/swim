@@ -12,6 +12,10 @@ if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
 
     data['Date'] = pd.to_datetime(data['Date'], format='%Y%m%d')
+    data['Handicap'] = pd.to_numeric(data['Handicap'], errors='coerce')
+    data['Swim Time'] = pd.to_numeric(data['Swim Time'], errors='coerce')
+    data['Pace/100m'] = pd.to_numeric(data['Pace/100m'], errors='coerce')
+
     
     # Convert Distance to numeric if needed
     if data['Distance'].dtype == 'O':  # If Distance is an object (string)
