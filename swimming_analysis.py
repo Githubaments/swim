@@ -14,7 +14,8 @@ if uploaded_file is not None:
     data['Date'] = pd.to_datetime(data['Date'], format='%Y%m%d')
     data['Handicap'] = pd.to_timedelta(data['Handicap'])
     data['Race Time'] = pd.to_timedelta(data['Race Time'])
-    data['Swim Time'] = pd.to_timedelta(data['Swim
+    data['Swim Time'] = pd.to_timedelta(data['Swim Time'])
+
 
 
     
